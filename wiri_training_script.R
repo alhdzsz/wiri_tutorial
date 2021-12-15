@@ -62,7 +62,8 @@ df <- df %>%
     singleb=as.factor(singleb),
     #Advert Period
     submp=as.duration(
-      interval(tender_publications_firstcallfortenderdate,tender_biddeadline)) %/% as.duration(days(1)),
+      interval(tender_publications_firstcallfortenderdate,tender_biddeadline)) 
+    %/% as.duration(days(1)),
     submp=ifelse(submp>365,NA,submp),
     submp=ifelse(submp<0,0,submp),
     submp10= ntile(submp, 10),
@@ -73,7 +74,8 @@ df <- df %>%
       TRUE~0
     ),
     #Decision Period
-    decp=as.duration(interval(tender_biddeadline,tender_publications_firstdcontractawarddate))%/% as.duration(days(1)),
+    decp=as.duration(interval(tender_biddeadline,tender_publications_firstdcontractawarddate))
+    %/% as.duration(days(1)),
     decp=ifelse(decp>365,NA,decp),
     decp=ifelse(decp<1,NA,decp),
     decp10=ntile(decp, 10),
